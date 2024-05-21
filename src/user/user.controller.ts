@@ -1,10 +1,10 @@
 import { Controller, Get, HttpCode, HttpStatus } from "@nestjs/common";
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   @Get()
   @HttpCode(HttpStatus.OK)
   public findAll(): string {
-    return `This is a user`;
+    return `This is a use`;
   }
 }
