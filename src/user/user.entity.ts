@@ -1,43 +1,49 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-
-@Entity('user')
-export class User {
-  @PrimaryGeneratedColumn()
+@Table({ tableName: 'users' })
+export class User extends Model<User> {
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+  })
   id: number;
 
   @Column({
-    type: 'varchar',
-    length: 100,
+    type: DataType.STRING(100),
     unique: true,
+    allowNull: false,
   })
   login: string;
 
   @Column({
-    type: 'text',
+    type: DataType.TEXT,
   })
   password: string;
 
   @Column({
-    type: 'text',
+    type: DataType.TEXT,
     unique: true,
   })
   email: string;
 
   @Column({
-    type: 'varchar',
-    length: 50
+    type: DataType.DATE,
+  })
+  emailVerifiedAt: string;
+
+  @Column({
+    type: DataType.STRING(50),
   })
   name: string;
 
   @Column({
-    type: 'varchar',
-    length: 50
+    type: DataType.STRING(50),
   })
   surname: string;
 
   @Column({
-    type: 'text',
+    type: DataType.TEXT,
   })
   avatar: string;
 }
