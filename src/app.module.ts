@@ -7,9 +7,12 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { config } from "./config/config";
 import { User } from "./user/user.entity";
 import { SequelizeModule, SequelizeModuleOptions } from "@nestjs/sequelize";
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    UserModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
@@ -32,8 +35,10 @@ import { SequelizeModule, SequelizeModuleOptions } from "@nestjs/sequelize";
         autoLoadModels: true,
       }),
     }),
+    UserModule,
+    AuthModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

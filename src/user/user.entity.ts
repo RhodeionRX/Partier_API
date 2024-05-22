@@ -7,7 +7,7 @@ export class User extends Model<User> {
     defaultValue: DataType.UUIDV4,
     primaryKey: true,
   })
-  id: number;
+  id: string;
 
   @Column({
     type: DataType.STRING(100),
